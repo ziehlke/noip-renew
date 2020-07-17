@@ -117,7 +117,7 @@ class Notify:
 
     def telegram(self, msg, img):
         with open(img, "rb") as f:
-            telegram_send.send(captions=[msg], images=[f])
+            telegram_send.send(conf='/etc/telegram-send.conf', captions=[msg], images=[f])
 
     def send(self, message, image):
         if self.notification_type.split('|')[0] == "Discord":
