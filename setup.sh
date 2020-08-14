@@ -21,7 +21,7 @@ function config() {
     LOGDIR=/var/log/noip-renew/$USER
     INSTDIR=/usr/local/bin
     INSTEXE=$INSTDIR/noip-renew-$USER
-    CRONJOB="30 0    * * *   $USER    $INSTEXE $LOGDIR"
+    CRONJOB="30 8    * * *   $USER    $INSTEXE $LOGDIR"
 }
 
 

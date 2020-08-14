@@ -3,9 +3,9 @@
 # Check for Version request
 VERSION="1.2"
 
-if [ "$1" = "--version" ] ; then
-    echo Version $VERSION
-    return 0
+if [ "$1" = "--version" ]; then
+  echo Version $VERSION
+  return 0
 fi
 
 # No-IP Account
@@ -30,22 +30,22 @@ SLACK_TOKEN=""
 CHANNEL=""
 
 if [ ! -z "$NOTIFICATION" ]; then
-    NPARMS=""
-    case $NOTIFICATION in
-        "Discord") NPARMS="|${DISCORD_WEBHOOK}";;
-        "Pushover") NPARMS="|${PUSHOVER_TOKEN}|${PUSHOVER_USER_KEY}";;
-        "Slack") NPARMS="|${SLACK_TOKEN}|${CHANNEL}";;
-        "Telegram") NPARMS="";;
-        *) echo "An error occured.";;
-    esac
-    NOTIFY="${NOTIFICATION}${NPARMS}"
+  NPARMS=""
+  case $NOTIFICATION in
+  "Discord") NPARMS="|${DISCORD_WEBHOOK}" ;;
+  "Pushover") NPARMS="|${PUSHOVER_TOKEN}|${PUSHOVER_USER_KEY}" ;;
+  "Slack") NPARMS="|${SLACK_TOKEN}|${CHANNEL}" ;;
+  "Telegram") NPARMS="" ;;
+  *) echo "An error occured." ;;
+  esac
+  NOTIFY="${NOTIFICATION}${NPARMS}"
 else
-    NOTIFY="None"
+  NOTIFY="None"
 fi
 
 if [ -z "$LOGDIR" ]; then
-    $PROGDIR/noip-renew.py "$USERNAME" "$PASSWORD" "$NOTIFY" 2
+  $PROGDIR/noip-renew.py "$USERNAME" "$PASSWORD" "$NOTIFY" 2
 else
-    cd $LOGDIR
-    $PROGDIR/noip-renew.py "$USERNAME" "$PASSWORD" "$NOTIFY" 0 >> $USERNAME.log
+  cd $LOGDIR
+  $PROGDIR/noip-renew.py "$USERNAME" "$PASSWORD" "$NOTIFY" 0 >>$USERNAME.log
 fi
