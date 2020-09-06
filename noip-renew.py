@@ -197,10 +197,10 @@ class Robot:
                 expiration_days = 30
                 count += 1
             renewals.append(expiration_days)
-            self.logger.log(f"{host_name} expires in {str(expiration_days)} days")
+            self.logger.log(f"{host_name} expires in {str(expiration_days)} days", 2)
         self.browser.save_screenshot("results.png")  # Image of host page listing all active hosts.
         self.logger.log(f"Confirmed hosts: {count}", 2)
-        next_renewal = max(1, min(renewals) - 6)
+        next_renewal = max(1, min(renewals) - 5)
         next_call = date.today() + timedelta(days=next_renewal)
         day = str(next_call.day)
         month = str(next_call.month)
